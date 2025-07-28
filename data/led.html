@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+    <script src="main.js" defer></script>
+</head>
+<body>
+    <div class="layouts">
+        <section class="navbar">
+            <h3>Web IOT</h3>
+        </section>
+        <section class="page-title">
+            <h3>LED CONTROL</h3>
+        </section>
+        <section class="leds">
+            <div class="led">
+                <img src="/img/led-off.png" alt="image" class="led-img" id="dapurLedImg">
+                <p class="led-location-text">DAPUR</p>
+                <button class="led-submit" id="ledDapur" onclick="setDapurLed()">TURN ON</button>
+            </div>
+            <div class="led">
+                <img src="/img/led-off.png" alt="image" class="led-img" id="tamuLedImg">
+                <p class="led-location-text">RUANG TAMU</p>
+                <button class="led-submit" id="ledTamu" onclick="setTamuLed()">TURN ON</button>
+            </div>
+            <div class="led">
+                <img src="/img/led-off.png" alt="image" class="led-img" id="makanLedImg">
+                <p class="led-location-text">RUANG MAKAN</p>
+                <button class="led-submit" id="ledMakan" onclick="setMakanLed()">TURN ON</button>
+            </div>
+            <div class="led">
+                <img src="/img/led-off.png" alt="image" class="led-img" id="toiletLedImg">
+                <p class="led-location-text">TOILET</p>
+                <button class="led-submit" id="ledToilet" onclick="setToiletLed()">TURN ON</button>
+            </div>
+        </section>
+        <section class="bottomBar">
+            <ul>                
+                <li>
+                    <a href="#"><i class="fa-solid fa-home"></i></a>
+                </li>
+                <li>
+                    <a href="led.html"><i class="fa-solid fa-lightbulb"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-solid fa-fan"></i></a>
+                </li>
+                <li>
+                    <a href="#"><i class="fa-solid fa-user"></i></a>
+                </li>
+            </ul>
+        </section>
+    </div>
+</body>
+</html>

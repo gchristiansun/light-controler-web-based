@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "../../../../../Music/project-iot2"
+		},
+		{
+			"name": "esp_iot",
+			"path": "."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "esp_iot"
+	}
+}
