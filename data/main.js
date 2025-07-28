@@ -1,4 +1,4 @@
-const endPoint = "http://192.168.4.1"
+const endPoint = "http://192.168.233.137"
 
 
 function getDapurLed() {

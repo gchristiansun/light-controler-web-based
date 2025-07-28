@@ -19,8 +19,8 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 WebServer server(80);
 
-const char* ssid = "Web IoT";
-const char* password = "12345678";
+const char* ssid = "import java.util.*;";
+const char* password = "db_company";
 
 const int espLed = 2;
 const int ledPin1 = 4;
@@ -49,7 +49,7 @@ void setup() {
   digitalWrite(ledPin3, LOW);
   digitalWrite(ledPin4, LOW);
 
-  // WiFi.begin(ssid, password);
+  WiFi.begin(ssid, password);
   // Serial.print("connecting to wifi import java.util.*...");
 
   void getDapurLed();
@@ -72,59 +72,61 @@ void setup() {
   display.setTextSize(1);
   display.setTextColor(SSD1306_WHITE);
   display.setCursor(0, 0);
-  display.println("Web IoT - AP Mode");
+  display.println("Web IoT - STA Mode");
   display.display();
 
-  WiFi.softAP(ssid, password);
-  IPAddress ip = WiFi.softAPIP();
+  // WiFi.softAP(ssid, password);
+  IPAddress ip = WiFi.localIP();
 
   display.setCursor(0, 10);
-  display.println("WiFi: AP Mode");
+  display.println("WiFi: STA Mode");
   display.setCursor(0, 20);
   display.print("IP: ");
   display.println(ip);
   display.display();
 
-  // int i = 0;
-  // int y = 0;
-  // delay(500);
-  // display.clearDisplay();
-  // while (WiFi.status() != WL_CONNECTED) {
-  //   digitalWrite(espLed, LOW);
-  //   delay(1000);
-  //   display.setTextSize(1);
-  //   display.setTextColor(SSD1306_WHITE);
-  //   display.setCursor(0, 0);
-  //   display.print("Connecting");
-  //   display.display();
-  //   display.setCursor(60 + y, 0);
-  //   display.print(".");
-  //   display.display();
-  //   delay(200);
-  //   y += 3;
-  //   i++;
-  //   if(i == 3) {
-  //     display.clearDisplay();
-  //     i = 0;
-  //     y = 0;
-  //   }
-  // }
+  delay(3000);
+
+  int i = 0;
+  int y = 0;
+  delay(500);
+  display.clearDisplay();
+  while (WiFi.status() != WL_CONNECTED) {
+    digitalWrite(espLed, LOW);
+    delay(1000);
+    display.setTextSize(1);
+    display.setTextColor(SSD1306_WHITE);
+    display.setCursor(0, 0);
+    display.print("Connecting");
+    display.display();
+    display.setCursor(60 + y, 0);
+    display.print(".");
+    display.display();
+    delay(200);
+    y += 3;
+    i++;
+    if(i == 3) {
+      display.clearDisplay();
+      i = 0;
+      y = 0;
+    }
+  }
 
   // Jika ESP sudah terkoneksi ke WiFi, maka lampu menyala
-  // digitalWrite(espLed, HIGH);
-  // Serial.println("");
+  digitalWrite(espLed, HIGH);
+  Serial.println("");
 
   // Menampilkan status di OLED
-  // delay(100);
-  // display.clearDisplay();
-  // display.setTextSize(1);
-  // display.setTextColor(SSD1306_WHITE);
-  // display.setCursor(0, 0);
-  // display.println("connected to wifi network!");
-  // display.display();
-  // display.setCursor(0, 20);
-  // display.println(WiFi.localIP());
-  // display.display();
+  delay(100);
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(0, 0);
+  display.println("connected to wifi network!");
+  display.display();
+  display.setCursor(0, 20);
+  display.println(WiFi.localIP());
+  display.display();
 
   // Menampilkan IP di serial monitor
   // Serial.println(WiFi.localIP());
@@ -175,9 +177,66 @@ void setup() {
   Serial.println("Server started...");
 }
 
+void reconnectWiFi() {
+  WiFi.reconnect();
+  int i = 0;
+  int y = 0;
+  delay(500);
+  display.clearDisplay();
+  while (WiFi.status() != WL_CONNECTED) {
+    digitalWrite(espLed, LOW);
+    delay(1000);
+    display.setTextSize(1);
+    display.setTextColor(SSD1306_WHITE);
+    display.setCursor(0, 0);
+    display.print("Connecting");
+    display.display();
+    display.setCursor(60 + y, 0);
+    display.print(".");
+    display.display();
+    delay(200);
+    y += 3;
+    i++;
+    if(i == 3) {
+      display.clearDisplay();
+      i = 0;
+      y = 0;
+    }
+  }
+  digitalWrite(espLed, HIGH);
+
+  // Menampilkan status di OLED
+  delay(100);
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(SSD1306_WHITE);
+  display.setCursor(0, 0);
+  display.println("connected to wifi network!");
+  display.display();
+  display.setCursor(0, 20);
+  display.println(WiFi.localIP());
+  display.display();
+
+  // Menampilkan IP di serial monitor
+  Serial.println(WiFi.localIP());
+
+}
+
 void loop() {
   // put your main code here, to run repeatedly:
   server.handleClient();
+
+  if(WiFi.status() != WL_CONNECTED) {
+    digitalWrite(espLed, LOW);
+    display.clearDisplay();
+    display.setTextSize(1);
+    display.setTextColor(SSD1306_WHITE);
+    display.setCursor(0, 0);
+    display.println("Disconnect");
+    display.display();
+    delay(5000);
+    reconnectWiFi();
+  }
 }
 
 void setDapurLed() {
