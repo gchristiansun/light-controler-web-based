@@ -9,6 +9,7 @@
 #include <FS.h>
 #include <SPIFFS.h>
 #include <DNSServer.h>
+#include <ESPmDNS.h>
 
 #define SCREEN_WIDTH 128
 #define SCREEN_HEIGHT 32
@@ -115,6 +116,10 @@ void setup() {
   // Jika ESP sudah terkoneksi ke WiFi, maka lampu menyala
   digitalWrite(espLed, HIGH);
   Serial.println("");
+  if (!MDNS.begin("esp")) {
+    Serial.println("Error setting up MDNS responder!");
+    return;
+  }
 
   // Menampilkan status di OLED
   delay(100);
