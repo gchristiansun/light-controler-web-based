@@ -20,8 +20,8 @@ Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 
 WebServer server(80);
 
-const char* ssid = "import java.util.*;";
-const char* password = "db_company";
+const char* ssid = "import java.util.*;"; // Sesuaikan dengan nama WiFi/jaringan
+const char* password = "db_company"; // Sesuaikan dengan password WiFi/Jaringan
 
 const int espLed = 2;
 const int ledPin1 = 4;
@@ -182,6 +182,7 @@ void setup() {
   Serial.println("Server started...");
 }
 
+// Function untuk menyambungkan kembali ke jaringan WiFi
 void reconnectWiFi() {
   WiFi.reconnect();
   int i = 0;

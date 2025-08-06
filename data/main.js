@@ -1,4 +1,4 @@
-const endPoint = "http://192.168.50.137"
+const endPoint = "http://192.168.50.137" // Sesuaikan dengan IP WiFi
 
 
 function getDapurLed() {
